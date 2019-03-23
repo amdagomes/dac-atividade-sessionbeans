@@ -12,11 +12,15 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.ifpb.model.Integrante;
 import com.ifpb.persistenciaIF.IntegranteIF;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Cliente
  */
+@Stateless
+@Remote(IntegranteIF.class)
 public class IntegrantePersist implements IntegranteIF {
 
     EntityManager em = Persistence

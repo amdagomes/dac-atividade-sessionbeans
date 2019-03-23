@@ -9,15 +9,22 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 /**
  *
  * @author Cliente
  */
+
+@Entity
 public class Album implements Serializable {
+    @Id
+     @GeneratedValue
 
     private int id;
     @Enumerated(EnumType.STRING)

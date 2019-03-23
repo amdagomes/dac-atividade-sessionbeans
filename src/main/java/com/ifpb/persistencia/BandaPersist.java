@@ -11,12 +11,18 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.ifpb.model.Banda;
+import com.ifpb.persistenciaIF.AlbumIF;
 import com.ifpb.persistenciaIF.BandaIF;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Cliente
  */
+
+@Stateless
+@Remote(BandaIF.class)
 public class BandaPersist implements BandaIF {
 
     EntityManager em = Persistence
