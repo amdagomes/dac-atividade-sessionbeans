@@ -29,6 +29,9 @@
     justify-content: center;
 }
 
+.modal{
+    overflow: visible !important;
+}
 .jquery-modal{
     z-index: 50;
 }

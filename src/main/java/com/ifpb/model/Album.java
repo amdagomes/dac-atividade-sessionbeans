@@ -33,6 +33,9 @@ public class Album implements Serializable {
     private Banda banda;
     private LocalDate anoDeLancamento;
 
+    public Album() {
+    }
+
     public Album(int id, Estilo estilo, Banda banda, LocalDate anoDeLancamento) {
         this.id = id;
         this.estilo = estilo;
