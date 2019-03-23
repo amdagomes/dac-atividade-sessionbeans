@@ -4,9 +4,9 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
     <!--<jta-data-source>java:app/dac-jpa</jta-data-source>-->
-    <class>model.Banda</class>
-    <class>model.Integrante</class>
-    <class>model.ConversorLocalDate</class>
+    <class>com.ifpb.model.Integrante</class>
+    <class>com.ifpb.model.ConversorLocalDate</class>
+    <class>com.ifpb.model.Banda</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dac-jpa"/>
