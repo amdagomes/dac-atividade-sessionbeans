@@ -28,7 +28,7 @@ public class Banda implements Serializable {
     private String localDeOrigem;
     private String nomeFantasia;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "banda_id")
     private List<Integrante> integrantes;
 
@@ -36,6 +36,10 @@ public class Banda implements Serializable {
         this.integrantes = new ArrayList<>();
 
     }
+
+   
+    
+   
 
     public void adicionar(Integrante i) {
         this.integrantes.add(i);

@@ -22,5 +22,6 @@ public interface IntegranteIF {
     public Integrante find(int id);
 
     public List<Integrante> list();
-     public void update(int id, Integrante i);
+
+    public void update(int id, Integrante i);
 }

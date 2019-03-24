@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,6 +32,7 @@ public class Album implements Serializable {
     private Estilo estilo;
     @OneToOne(cascade = CascadeType.ALL)
     private Banda banda;
+    @Convert(converter = ConversorLocalDate.class)
     private LocalDate anoDeLancamento;
 
     public Album() {

@@ -24,13 +24,12 @@ import javax.ejb.Stateless;
 public class IntegrantePersist implements IntegranteIF {
 
     EntityManager em = Persistence
-            .createEntityManagerFactory("PDP")
+            .createEntityManagerFactory("DAC")
             .createEntityManager();
 
     @Override
     public void persist(Integrante i) {
         EntityTransaction transaction = em.getTransaction();
-
         transaction.begin();
         em.persist(i);
         transaction.commit();

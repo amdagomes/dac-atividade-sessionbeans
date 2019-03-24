@@ -16,7 +16,7 @@ and open the template in the editor.
                 <div class="field">
                     <label class="label has-text-weight-normal">Nome</label>
                     <div class="control">
-                        <h:inputText  class="input" value="#"/>
+                        <h:inputText  class="input" value="#{bandaControlador.b.nomeFantasia}"/>
                     </div>
                 </div>
                 <div class="field">
@@ -24,13 +24,13 @@ and open the template in the editor.
                         <div class="column">
                             <label class="label has-text-weight-normal">Local de Origem </label>
                             <div class="control">
-                                <h:inputText class="input" value="#"/>
+                                <h:inputText class="input" value="#{bandaControlador.b.localDeOrigem}"/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br/>
-                <h:commandButton class="button is-success is-fullwidth" value="Cadastrar" action="#"/>
+                <h:commandButton class="button is-success is-fullwidth" value="Cadastrar" action="#{bandaControlador.addBanda()}"/>
             </h:form>
         </div>
     </h:body>

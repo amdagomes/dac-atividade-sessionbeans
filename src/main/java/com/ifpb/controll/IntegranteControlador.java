@@ -2,26 +2,31 @@ package com.ifpb.controll;
 
 import com.ifpb.model.Integrante;
 import com.ifpb.persistenciaIF.IntegranteIF;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+
 
 /**
  *
  * @author Amanda
  */
-@Named
+
+
+@ManagedBean(name = "integranteControlador")
 @RequestScoped
-public class IntegranteControll {
+public class IntegranteControlador implements Serializable {
 
     @EJB
     private IntegranteIF manager;
     private Integrante integrante = new Integrante();
     
     public String salvar(){
-        this.manager.persist(integrante);
-        this.integrante = new Integrante();
+      
+        this.manager.persist(this.integrante);
+        this.integrante= new Integrante();
         return null;
     }
     

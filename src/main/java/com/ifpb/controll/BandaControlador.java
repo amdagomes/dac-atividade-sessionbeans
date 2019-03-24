@@ -8,26 +8,29 @@ package com.ifpb.controll;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+
 import com.ifpb.model.Banda;
 import com.ifpb.persistenciaIF.BandaIF;
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author Cliente
  */
-
-@Named
+@ManagedBean(name = "bandaControlador")
 @RequestScoped
-public class BandaControll {
+public class BandaControlador implements Serializable {
 
     @EJB
     private BandaIF banda;
-    private Banda b;
+    private Banda b = new Banda();
 
-    public String addBanda(Banda b) {
+    public String addBanda() {
 
         this.banda.persist(this.b);
+        this.b = new Banda();
+        bandaAleatoria();
 
         return null;
 
@@ -46,14 +49,26 @@ public class BandaControll {
         return this.banda.list();
     }
 
-    public List<Banda> BandaIntegrante(String integrante) {
+    public List<Banda> bandaIntegrante(String integrante) {
 
         return this.banda.listBandaPorIntegrante(integrante);
     }
+public List<Banda> bandaAleatoria() {
 
-    public Banda bandaIntegrante(String integrante) {
+        return this.banda.listBandaAleatoria();
+    }
+
+    public Banda bandaPorIntegrante(String integrante) {
 
         return this.banda.BandaIntegrante(integrante);
+    }
+
+    public Banda getB() {
+        return b;
+    }
+
+    public void setB(Banda b) {
+        this.b = b;
     }
 
 }

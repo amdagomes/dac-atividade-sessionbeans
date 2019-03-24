@@ -7,7 +7,10 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      
+      >
     <h:head>
     </h:head>
     <h:body>
@@ -17,28 +20,34 @@ and open the template in the editor.
                 <div class="field">
                     <label class="label has-text-weight-normal">Nome</label>
                     <div class="control">
-                        <h:inputText  class="input" value="#{integranteControll.integrante.nome}"/>
+                        <h:inputText  class="input" value="#{integranteControlador.integrante.nome}"/>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label has-text-weight-normal">Cpf</label>
                     <div class="control">
-                        <h:inputText  class="input" converter="converter.CPF" value="#{integranteControll.integrante.cpf}"/>
+                        <h:inputText  class="input" converter="converter.CPF" value="#{integranteControlador.integrante.cpf}"/>
                     </div>
                 </div>
-                <div class="field">
-                    <div class="columns">
+                
+               
+              <!--  <div class="field">
+                    
                         <div class="column">
                             <label class="label has-text-weight-normal">Data de nascimento </label>
                             <div class="control">
-                                <h:inputText class="input" a:type="date"  value="#{integranteControll.integrante.dataDeNascimento}"/>
+                                <h:inputText class="input"  value="#{integranteControlador.integrante.dataDeNascimento}">
+                                <f:convertDateTime pattern="d-M-yyyy" />
+                                </h:inputText>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-                <h:commandButton class="button is-success is-fullwidth" value="Cadastrar" action="#{integranteControll.salvar()}"/>
+                        </div 
+                    </div> -->
+                
+                 <h:commandButton class="button is-success is-fullwidth" value="Cadastrar" action="#{integranteControlador.salvar()}"/>
             </h:form>
-        </div>
+                <br/>
+                 </div>
+         
+
     </h:body>  
 </html>

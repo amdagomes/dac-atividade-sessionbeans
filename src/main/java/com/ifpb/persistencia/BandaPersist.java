@@ -11,16 +11,15 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.ifpb.model.Banda;
-import com.ifpb.persistenciaIF.AlbumIF;
 import com.ifpb.persistenciaIF.BandaIF;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 /**
  *
  * @author Cliente
  */
-
 @Stateless
 @Remote(BandaIF.class)
 public class BandaPersist implements BandaIF {
@@ -98,6 +97,15 @@ public class BandaPersist implements BandaIF {
         banda.setId(id);
         em.merge(banda);
         transaction.commit();
+    }
+
+    @Override
+    public List<Banda> listBandaAleatoria() {
+
+        String sql = "SELECT * FROM Banda  ORDER BY RANDOM() LIMIT 3";
+        Query query = em.createNativeQuery(sql, Banda.class);
+        List<Banda> resultList = query.getResultList();
+        return resultList;
     }
 
 }

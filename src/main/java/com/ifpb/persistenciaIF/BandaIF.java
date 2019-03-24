@@ -22,10 +22,13 @@ public interface BandaIF {
     public Banda find(int id);
 
     public List<Banda> list();
-       public void update(int id,Banda b);
 
+    public void update(int id, Banda b);
 
     public Banda BandaIntegrante(String integrante);
 
     public List<Banda> listBandaPorIntegrante(String integrante);
+     public List<Banda> listBandaAleatoria();
+    
+
 }
