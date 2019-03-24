@@ -21,7 +21,7 @@ import javax.persistence.Query;
  * @author Cliente
  */
 @Stateless
-@Remote(BandaIF.class)
+//@Remote(BandaIF.class)
 public class BandaPersist implements BandaIF {
 
     EntityManager em = Persistence

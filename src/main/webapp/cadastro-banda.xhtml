@@ -6,17 +6,25 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
+        <title>Facelet Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"/>
+        <link rel="stylesheet" href="css/bulma-divider.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+        <link rel="stylesheet" href="css/style.css"/>
     </h:head>
     <h:body>
         <div id="modal-cadastrar-banda" class="none">
-            <p class="title is-4">Cadastro de Banda</p>
-            <h:form>
+
+            <!--<h:form>
                 <div class="field">
                     <label class="label has-text-weight-normal">Nome</label>
                     <div class="control">
-                        <h:inputText  class="input" value="#{bandaControlador.b.nomeFantasia}"/>
+                        <h:inputText  class="input" value="{bandaControlador.b.nomeFantasia}"/>
                     </div>
                 </div>
                 <div class="field">
@@ -24,14 +32,62 @@ and open the template in the editor.
                         <div class="column">
                             <label class="label has-text-weight-normal">Local de Origem </label>
                             <div class="control">
-                                <h:inputText class="input" value="#{bandaControlador.b.localDeOrigem}"/>
+                                <h:inputText class="input" value="{bandaControlador.b.localDeOrigem}"/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br/>
-                <h:commandButton class="button is-success is-fullwidth" value="Cadastrar" action="#{bandaControlador.addBanda()}"/>
-            </h:form>
+                <h:commandButton class="button is-success is-fullwidth" value="Cadastrar" action="{bandaControlador.addBanda()}"/>
+            </h:form> -->
         </div>
-    </h:body>
+        <section class="section full cadastrar-banda">
+            <div class="container">
+                <p class="title is-4">Cadastro de Banda</p>
+                <h:form>
+                    <div class="field">
+                        <div class="columns">
+                            <div class="column">
+                                <label class="label has-text-weight-normal">Integrantes </label>
+                                <div class="control">
+                                    <a href="#modal-cadastrar-integrante" class=" button is-primary is-outlined is-medium" rel="modal:open">Cadastrar Integrantes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-grouped is-grouped-multiline">
+                        <div class="control">
+                            <c:forEach items="#{bandaControlador.b.integrantes}" var="i">
+                                <div class="tags has-addons">
+                                    <a class="tag is-link">#{i.nome}</a>
+                                    <h:commandLink class="tag is-delete" action="#{bandaControlador.removerIntegrante(i)}"></h:commandLink>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-weight-normal">Nome da banda</label>
+                        <div class="control">
+                            <h:inputText  class="input" value="#{bandaControlador.b.nomeFantasia}"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="columns">
+                            <div class="column">
+                                <label class="label has-text-weight-normal">Local de Origem </label>
+                                <div class="control">
+                                    <h:inputText class="input" value="#{bandaControlador.b.localDeOrigem}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <h:commandButton class="adicionar-banda button is-success is-fullwidth" value="Cadastrar" action="#{bandaControlador.addBanda()}"/>
+                    <br/>
+                    <a href="index.xhtml" class="adicionar-banda button is-fullwidth">Voltar</a>
+                </h:form>
+                <ui:include src="cadastro-integrante.xhtml"/>
+            </div>
+        </section>
+    </h:body>    
 </html>

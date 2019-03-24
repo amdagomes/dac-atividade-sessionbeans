@@ -16,20 +16,21 @@
                 <div class="tabs is-centered">
                     <ul>
                         <li id="banda" class="is-active"><a>Bandas</a></li>
-                        <li id="integrante" class=""><a>Integrantes</a></li>
+                        <li id="integrante" class=""><a href="home-integrantes.xhtml">Integrantes</a></li>
                         <li><a href="index.xhtml">Cadastrar</a></li>
                     </ul>
                 </div>
             </div>
         </section>
         <div class="container">
-            <div class="r-banda block">
-                <div class="tile is-ancestor">
-                    <ui:repeat var="banda" value="#{bandaControlador.listar}">
-                        <div class="tile is-parent is-3">
+            <div class="section">
+                <div class="tile">
+                    <ui:repeat var="banda" value="#{bandaControlador.listar()}">
+
+                        <div class="tile is-parent is-3 is-vertical">
                             <article class="tile is-child box">
                                 <p class="title is-4">#{banda.nomeFantasia}</p>
-                                <p>Local de origem: #{banda.localOrigem}</p>
+                                <p>Local de origem: #{banda.localDeOrigem}</p>
                                 <p>Integrantes: </p>
                                 <ui:repeat var="integrante" value="#">
                                     <p>#</p>
@@ -38,10 +39,12 @@
 
                                 <div class="columns">
                                     <div class="column has-text-centered">
-                                        <a href="#modal-banda-#" class="button is-success" rel="modal:open">Atualizar</a>
+                                        <a href="#modal-banda-#{banda.id}" class="button is-success" rel="modal:open">Atualizar</a>
                                     </div>
                                     <div class="column has-text-centered">     
-                                        <h:commandLink class="button is-danger" action="#" value="Remover"/>
+                                        <h:form>
+                                            <h:commandLink class="button is-danger" action="#{bandaControlador.removeBanda(banda)}" value="Remover"/>
+                                        </h:form>       
                                     </div>
                                 </div>
                             </article>
@@ -54,13 +57,13 @@
                                 <div class="field">
                                     <label class="label has-text-weight-normal">Nome</label>
                                     <div class="control">
-                                        <h:inputText class="input" value="#"/>
+                                        <h:inputText class="input" value="#{banda.nomeFantasia}"/>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label class="label has-text-weight-normal">Local de origem</label>
                                     <div class="control">
-                                        <h:inputText class="input" value="#"/>
+                                        <h:inputText class="input" value="#{banda.localDeOrigem}"/>
                                     </div>
                                 </div>
                                 <h:commandButton class="button is-success is-fullwidth" value="Atualizar" action="#"/>
@@ -69,84 +72,9 @@
                     </ui:repeat>
                 </div>
             </div>
-
-            <div class="r-integrante none">
-                <div class="tile is-ancestor">
-                    <ui:repeat var="integrante" value="#">
-                        <div class="tile is-parent is-3">
-                            <article class="tile is-child box">
-                                <p class="title is-4">{integrante.nome}</p>
-                                <p>{integrante.dataDeNascimento}</p>
-                                <p>{integrante.cpf}</p>
-                                <br/>
-                                <div class="columns">
-                                    <div class="column has-text-centered">
-                                        <a href="#modal-integrante-#" class="button is-success" rel="modal:open">Atualizar</a>
-                                    </div>
-                                    <div class="column has-text-centered">     
-                                        <h:commandLink class="button is-danger" action="#" value="Remover"/>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div id="modal-integrante-{integrante.id}" class="modal">
-                            <p class="title is-4">Atualizar</p>
-                            <h:form>
-                                <h:inputHidden value="{integrante.id}"/>
-                                <div class="field">
-                                    <label class="label has-text-weight-normal">Nome</label>
-                                    <div class="control">
-                                        <h:inputText class="input" value="#"/>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="columns">
-                                        <div class="column">
-                                            <label class="label has-text-weight-normal">CPF</label>
-                                            <div class="control">
-                                                <h:inputText class="input" value="#"/>
-                                            </div>
-                                        </div>
-                                        <div class="column">
-                                            <label class="label has-text-weight-normal">Data de Nascimento</label>
-                                            <div class="control">
-                                                <h:inputText class="input" value="#"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h:commandButton class="button is-success is-fullwidth" value="Atualizar" action="#"/>
-                            </h:form>
-                        </div>
-                    </ui:repeat>
-                </div>
-            </div>
-
-            <h:form>
-                <ui:include src="cadastro-banda.xhtml"/>
-                <ui:include src="cadastro-integrantes.xhtml"/>
-            </h:form>
-
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-        <script>
-            var tabIntegrante = document.getElementById("integrante");
-            var tabBanda = document.getElementById("banda");
-            tabIntegrante.onclick = function () {
-                $('#integrante').addClass('is-active');
-                $('#banda').removeClass('is-active');
-                $('.r-integrante').addClass('block').removeClass('none');
-                $('.r-banda').removeClass('block').addClass('none');
-            };
-            tabBanda.onclick = function () {
-                $('#integrante').removeClass('is-active');
-                $('#banda').addClass('is-active');
-                $('.r-integrante').removeClass('block').addClass('none');
-                $('.r-banda').addClass('block').removeClass('none');
-            };
-        </script>
     </h:body>
 </html>

@@ -10,29 +10,31 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 
 import com.ifpb.model.Banda;
+import com.ifpb.model.Integrante;
 import com.ifpb.persistenciaIF.BandaIF;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Cliente
  */
 @ManagedBean(name = "bandaControlador")
-@RequestScoped
+@SessionScoped
 public class BandaControlador implements Serializable {
 
     @EJB
     private BandaIF banda;
     private Banda b = new Banda();
+    private Integrante integrante = new Integrante();
 
     public String addBanda() {
 
         this.banda.persist(this.b);
         this.b = new Banda();
         bandaAleatoria();
-
-        return null;
+        return "index.xhtml";
 
     }
 
@@ -53,7 +55,20 @@ public class BandaControlador implements Serializable {
 
         return this.banda.listBandaPorIntegrante(integrante);
     }
-public List<Banda> bandaAleatoria() {
+    
+    public String addIntegrante(){
+        this.b.getIntegrantes().add(this.integrante);
+        this.integrante = new Integrante();
+         return null;  
+    }
+    
+    public String removerIntegrante(Integrante integrante){
+        System.out.println("remover: " + integrante.toString());
+        this.b.getIntegrantes().remove(integrante);
+        return null;
+    }
+    
+    public List<Banda> bandaAleatoria() {
 
         return this.banda.listBandaAleatoria();
     }
@@ -69,6 +84,14 @@ public List<Banda> bandaAleatoria() {
 
     public void setB(Banda b) {
         this.b = b;
+    }
+
+    public Integrante getIntegrante() {
+        return integrante;
+    }
+
+    public void setIntegrante(Integrante integrante) {
+        this.integrante = integrante;
     }
 
 }

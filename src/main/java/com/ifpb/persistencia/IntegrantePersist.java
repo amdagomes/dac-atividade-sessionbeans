@@ -20,7 +20,7 @@ import javax.ejb.Stateless;
  * @author Cliente
  */
 @Stateless
-@Remote(IntegranteIF.class)
+//@Remote(IntegranteIF.class)
 public class IntegrantePersist implements IntegranteIF {
 
     EntityManager em = Persistence
@@ -47,13 +47,7 @@ public class IntegrantePersist implements IntegranteIF {
 
     @Override
     public Integrante find(int id) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Integrante i;
-        i = em.find(Integrante.class, id);
-        transaction.commit();
-        return i;
-
+        return em.find(Integrante.class, id);
     }
 
     @Override
@@ -71,8 +65,10 @@ public class IntegrantePersist implements IntegranteIF {
         transaction.begin();
         Integrante i;
         i = em.find(Integrante.class, id);
-        i = integrante;
         i.setId(id);
+        i.setCpf(integrante.getCpf());
+        i.setDataDeNascimento(integrante.getDataDeNascimento());
+        i.setNome(integrante.getNome());
         em.merge(i);
         transaction.commit();
 

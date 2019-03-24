@@ -7,6 +7,7 @@ package com.ifpb.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 import javax.persistence.AttributeOverride;
 
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ public class Integrante implements Serializable {
     @AttributeOverride(name = "numero", column = @Column(name = "cpf"))
     private Cpf cpf = new Cpf("");
 
-    @Convert(converter = ConversorLocalDate.class)
+//    @Convert(converter = ConversorLocalDate.class)
     private LocalDate dataDeNascimento;
 
     public Integrante() {
@@ -73,6 +74,48 @@ public class Integrante implements Serializable {
 
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.cpf);
+        hash = 47 * hash + Objects.hashCode(this.dataDeNascimento);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Integrante other = (Integrante) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataDeNascimento, other.dataDeNascimento)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Integrante{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", dataDeNascimento=" + dataDeNascimento + '}';
     }
 
 }

@@ -6,11 +6,7 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      
-      >
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
     </h:head>
     <h:body>
@@ -20,34 +16,32 @@ and open the template in the editor.
                 <div class="field">
                     <label class="label has-text-weight-normal">Nome</label>
                     <div class="control">
-                        <h:inputText  class="input" value="#{integranteControlador.integrante.nome}"/>
+                        <h:inputText  class="input" value="#{bandaControlador.integrante.nome}"/>
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label has-text-weight-normal">Cpf</label>
+                    <label class="label has-text-weight-normal">CPF</label>
                     <div class="control">
-                        <h:inputText  class="input" converter="converter.CPF" value="#{integranteControlador.integrante.cpf}"/>
+                        <h:inputText  class="input" converter="converter.CPF" value="#{bandaControlador.integrante.cpf}"/>
                     </div>
                 </div>
-                
-               
-              <!--  <div class="field">
-                    
-                        <div class="column">
-                            <label class="label has-text-weight-normal">Data de nascimento </label>
-                            <div class="control">
-                                <h:inputText class="input"  value="#{integranteControlador.integrante.dataDeNascimento}">
-                                <f:convertDateTime pattern="d-M-yyyy" />
-                                </h:inputText>
-                            </div>
-                        </div 
-                    </div> -->
-                
-                 <h:commandButton class="button is-success is-fullwidth" value="Cadastrar" action="#{integranteControlador.salvar()}"/>
-            </h:form>
-                <br/>
-                 </div>
-         
 
+
+                <div class="field">
+
+                    <div class="column">
+                        <label class="label has-text-weight-normal">Data de nascimento </label>
+                        <div class="control">
+                            <h:inputText class="input" converter="converter.LocalDate" value="#{bandaControlador.integrante.dataDeNascimento}"/>
+                        </div>
+                    </div> 
+                </div>
+
+                <h:commandLink class="button is-success is-fullwidth" action="#{bandaControlador.addIntegrante()}">Cadastrar</h:commandLink>
+            </h:form>
+            <br/>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     </h:body>  
 </html>

@@ -8,6 +8,7 @@ package com.ifpb.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,8 +29,8 @@ public class Banda implements Serializable {
     private String localDeOrigem;
     private String nomeFantasia;
 
-    @OneToMany
-    @JoinColumn(name = "banda_id")
+    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "banda_id")
     private List<Integrante> integrantes;
 
     public Banda() {
@@ -46,7 +47,7 @@ public class Banda implements Serializable {
     }
 
     public Banda(String localDeOrigem, String nomeFantasia) {
-
+        this();
         this.localDeOrigem = localDeOrigem;
         this.nomeFantasia = nomeFantasia;
 
@@ -82,6 +83,43 @@ public class Banda implements Serializable {
 
     public void setIntegrantes(List<Integrante> integrantes) {
         this.integrantes = integrantes;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.localDeOrigem);
+        hash = 89 * hash + Objects.hashCode(this.nomeFantasia);
+        hash = 89 * hash + Objects.hashCode(this.integrantes);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Banda other = (Banda) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.localDeOrigem, other.localDeOrigem)) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeFantasia, other.nomeFantasia)) {
+            return false;
+        }
+        if (!Objects.equals(this.integrantes, other.integrantes)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

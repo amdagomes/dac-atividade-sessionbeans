@@ -1,6 +1,9 @@
 .none{display:none}
 .block{display:block}
-
+section.full{
+    width: 100vw;
+    height: 100vh;
+}
 .hero.background{
     position: absolute;
     top: 0;
@@ -42,4 +45,11 @@ div.tabs li.is-active {
 
 .m-1{
     margin-bottom: 1rem;
+}
+.float-left{
+    float: left;
+}
+
+.tile{
+    flex-flow: wrap !important;
 }

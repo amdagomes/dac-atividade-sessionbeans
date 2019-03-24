@@ -6,6 +6,7 @@
 package com.ifpb.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Embeddable;
 
@@ -41,6 +42,35 @@ public class Cpf implements Serializable {
 
     public boolean ehValido() {
         return this.numero.length() == 11;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cpf other = (Cpf) obj;
+        if (!Objects.equals(this.numero, other.numero)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Cpf{" + "numero=" + numero + '}';
     }
 
 }

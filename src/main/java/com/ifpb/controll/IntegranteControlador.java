@@ -23,10 +23,8 @@ public class IntegranteControlador implements Serializable {
     private IntegranteIF manager;
     private Integrante integrante = new Integrante();
     
-    public String salvar(){
-      
+    public String salvar(){      
         this.manager.persist(this.integrante);
-        this.integrante= new Integrante();
         return null;
     }
     
