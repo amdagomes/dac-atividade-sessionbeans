@@ -86,12 +86,6 @@ public class BandaPersist implements BandaIF {
         em.merge(banda);
     }
 
-    @Override
-    public List<Banda> listBandaAleatoria() {
-        String sql = "SELECT * FROM Banda  ORDER BY RANDOM() LIMIT 3";
-        Query query = em.createNativeQuery(sql, Banda.class);
-        List<Banda> resultList = query.getResultList();
-        return resultList;
-    }
-
+    
+    
 }

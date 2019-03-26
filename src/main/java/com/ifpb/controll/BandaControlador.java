@@ -11,6 +11,8 @@ import javax.enterprise.context.RequestScoped;
 
 import com.ifpb.model.Banda;
 import com.ifpb.model.Integrante;
+import com.ifpb.persistencia.BandaDestaque;
+import com.ifpb.persistenciaIF.BandaDestaqueIF;
 import com.ifpb.persistenciaIF.BandaIF;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
@@ -26,8 +28,12 @@ public class BandaControlador implements Serializable {
 
     @EJB
     private BandaIF banda;
+    @EJB
+    private BandaDestaqueIF bd;
+    
     private Banda b = new Banda();
     private Integrante integrante = new Integrante();
+    
 
     public String addBanda() {
 
@@ -70,7 +76,7 @@ public class BandaControlador implements Serializable {
     
     public List<Banda> bandaAleatoria() {
 
-        return this.banda.listBandaAleatoria();
+        return this.bd.listBandaAleatoria();
     }
 
     public Banda bandaPorIntegrante(String integrante) {

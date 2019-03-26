@@ -28,7 +28,7 @@ public interface BandaIF {
     public Banda BandaIntegrante(String integrante);
 
     public List<Banda> listBandaPorIntegrante(String integrante);
-     public List<Banda> listBandaAleatoria();
+    
     
 
 }
