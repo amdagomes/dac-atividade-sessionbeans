@@ -14,6 +14,7 @@ import com.ifpb.model.Banda;
 import com.ifpb.persistenciaIF.BandaIF;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -24,36 +25,27 @@ import javax.persistence.Query;
 //@Remote(BandaIF.class)
 public class BandaPersist implements BandaIF {
 
-    EntityManager em = Persistence
-            .createEntityManagerFactory("DAC")
-            .createEntityManager();
+//    EntityManager em = Persistence
+//            .createEntityManagerFactory("DAC")
+//            .createEntityManager();
+    
+    @PersistenceContext
+    EntityManager em;
 
     @Override
     public void persist(Banda b) {
-        EntityTransaction transaction = em.getTransaction();
-
-        transaction.begin();
         em.persist(b);
-        transaction.commit();
     }
 
     @Override
     public void remove(int id) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Banda b;
-        b = em.find(Banda.class, id);
+        Banda b = em.find(Banda.class, id);
         em.remove(b);
     }
 
     @Override
     public Banda find(int id) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Banda b;
-        b = em.find(Banda.class, id);
-        transaction.commit();
-        return b;
+        return em.find(Banda.class, id);
     }
 
     @Override
@@ -76,8 +68,6 @@ public class BandaPersist implements BandaIF {
 
     @Override
     public Banda BandaIntegrante(String integrante) {
-        EntityTransaction transaction = em.getTransaction();
-
         integrante = integrante.toUpperCase();
         String sql = " SELECT b FROM Banda b, IN (b.integrantes) i WHERE UPPER(i.nome) = :integrante";
         TypedQuery<Banda> query = em.createQuery(sql, Banda.class);
@@ -89,19 +79,14 @@ public class BandaPersist implements BandaIF {
 
     @Override
     public void update(int id, Banda b) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Banda banda;
-        banda = em.find(Banda.class, id);
+        Banda banda = em.find(Banda.class, id);
         banda = b;
         banda.setId(id);
         em.merge(banda);
-        transaction.commit();
     }
 
     @Override
     public List<Banda> listBandaAleatoria() {
-
         String sql = "SELECT * FROM Banda  ORDER BY RANDOM() LIMIT 3";
         Query query = em.createNativeQuery(sql, Banda.class);
         List<Banda> resultList = query.getResultList();

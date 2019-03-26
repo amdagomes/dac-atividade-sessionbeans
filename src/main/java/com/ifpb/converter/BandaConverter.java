@@ -1,9 +1,8 @@
 package com.ifpb.converter;
 
-import com.ifpb.model.Integrante;
-import com.ifpb.persistencia.IntegrantePersist;
-import com.ifpb.persistenciaIF.IntegranteIF;
-import javax.ejb.EJB;
+import com.ifpb.model.Banda;
+import com.ifpb.persistencia.BandaPersist;
+import com.ifpb.persistenciaIF.BandaIF;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -13,11 +12,11 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Amanda
  */
-@FacesConverter(value = "converter.Integrante", forClass = Integrante.class)
-public class IntegranteConverter implements Converter {
+@FacesConverter(value = "converter.Banda", forClass = Banda.class)
+public class BandaConverter implements Converter {
     
 //    @EJB
-    private final IntegranteIF dao = new IntegrantePersist();
+    private final BandaIF dao = new BandaPersist();
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -25,17 +24,17 @@ public class IntegranteConverter implements Converter {
             return null;
         }else{
             int id = Integer.parseInt(value);
-            Integrante i = dao.find(id);
-            System.out.println("Integrante: " + i.getNome());
-            return i;
+            Banda b = dao.find(id);
+            System.out.println("Integrante: " + b.getNomeFantasia());
+            return b;
         }
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        Integrante i = (Integrante) value;
-       if(i != null){
-            return String.valueOf(i.getId());
+        Banda b = (Banda) value;
+       if(b != null){
+            return String.valueOf(b.getId());
         }else{
             return null;
         }

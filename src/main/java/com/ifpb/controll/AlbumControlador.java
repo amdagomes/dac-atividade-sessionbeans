@@ -6,6 +6,7 @@
 package com.ifpb.controll;
 
 import com.ifpb.model.Album;
+import com.ifpb.model.Estilo;
 
 import com.ifpb.persistenciaIF.AlbumIF;
 
@@ -25,11 +26,11 @@ public class AlbumControlador implements Serializable {
 
     @EJB
     private AlbumIF albuns;
-    private Album album;
+    private Album album = new Album();
 
     public String salvar() {
-
-        this.albuns.persist(album);
+        System.out.println("banda: " + this.album.getBanda().toString());
+//        this.albuns.persist(album);
         return null;
     }
 
@@ -41,6 +42,10 @@ public class AlbumControlador implements Serializable {
 
     public List<Album> listar() {
         return this.listar();
+    }
+    
+    public Estilo[] getEstilos(){
+        return Estilo.values();
     }
 
     public AlbumIF getAlbuns() {

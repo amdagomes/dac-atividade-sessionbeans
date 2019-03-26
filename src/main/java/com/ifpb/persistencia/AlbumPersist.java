@@ -15,6 +15,7 @@ import javax.persistence.TypedQuery;
 import com.ifpb.model.Album;
 import com.ifpb.persistenciaIF.AlbumIF;
 import com.ifpb.persistenciaIF.BandaIF;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -24,37 +25,26 @@ import com.ifpb.persistenciaIF.BandaIF;
 @Remote(AlbumIF.class)
 public class AlbumPersist implements AlbumIF {
 
-    EntityManager em = Persistence
-            .createEntityManagerFactory("PDP")
-            .createEntityManager();
+//    EntityManager em = Persistence
+//            .createEntityManagerFactory("DAC")
+//            .createEntityManager();
+    @PersistenceContext
+    EntityManager em;
 
     @Override
     public void persist(Album a) {
-        EntityTransaction transaction = em.getTransaction();
-
-        transaction.begin();
         em.persist(a);
-        transaction.commit();
     }
 
     @Override
     public void remove(int id) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Album a;
-        a = em.find(Album.class, id);
+        Album a = em.find(Album.class, id);
         em.remove(a);
     }
 
     @Override
     public Album find(int id) {
-
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Album a;
-        a = em.find(Album.class, id);
-        transaction.commit();
-        return a;
+        return em.find(Album.class, id);
     }
 
     @Override
@@ -67,8 +57,6 @@ public class AlbumPersist implements AlbumIF {
 
     @Override
     public void update(int id, Album a) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
         Album album;
         album = em.find(Album.class, id);
         album = a;

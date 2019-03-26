@@ -14,6 +14,7 @@ import com.ifpb.model.Integrante;
 import com.ifpb.persistenciaIF.IntegranteIF;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -23,25 +24,21 @@ import javax.ejb.Stateless;
 //@Remote(IntegranteIF.class)
 public class IntegrantePersist implements IntegranteIF {
 
-    EntityManager em = Persistence
-            .createEntityManagerFactory("DAC")
-            .createEntityManager();
+//    EntityManager em = Persistence
+//            .createEntityManagerFactory("DAC")
+//            .createEntityManager();
 
+    @PersistenceContext
+    EntityManager em;
+    
     @Override
     public void persist(Integrante i) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
         em.persist(i);
-        transaction.commit();
-
     }
 
     @Override
     public void remove(int id) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-        Integrante i;
-        i = em.find(Integrante.class, id);
+        Integrante i = em.find(Integrante.class, id);
         em.remove(i);
     }
 
@@ -61,8 +58,6 @@ public class IntegrantePersist implements IntegranteIF {
 
     @Override
     public void update(int id, Integrante integrante) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
         Integrante i;
         i = em.find(Integrante.class, id);
         i.setId(id);
@@ -70,8 +65,6 @@ public class IntegrantePersist implements IntegranteIF {
         i.setDataDeNascimento(integrante.getDataDeNascimento());
         i.setNome(integrante.getNome());
         em.merge(i);
-        transaction.commit();
-
     }
 
 }

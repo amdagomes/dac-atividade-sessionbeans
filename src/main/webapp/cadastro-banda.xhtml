@@ -56,14 +56,12 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="field is-grouped is-grouped-multiline">
-                        <div class="control">
                             <c:forEach items="#{bandaControlador.b.integrantes}" var="i">
-                                <div class="tags has-addons">
+                                <div class="tags has-addons m-right-1">
                                     <a class="tag is-link">#{i.nome}</a>
                                     <h:commandLink class="tag is-delete" action="#{bandaControlador.removerIntegrante(i)}"></h:commandLink>
                                 </div>
                             </c:forEach>
-                        </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-weight-normal">Nome da banda</label>
