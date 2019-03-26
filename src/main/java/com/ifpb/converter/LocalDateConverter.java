@@ -17,8 +17,7 @@ public class LocalDateConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        Locale BRAZIL = new Locale("pt", "BR");
-        return LocalDate.parse(value, DateTimeFormatter.ofPattern("dd/MM/yyyy").withLocale(BRAZIL));
+        return LocalDate.parse(value, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     @Override

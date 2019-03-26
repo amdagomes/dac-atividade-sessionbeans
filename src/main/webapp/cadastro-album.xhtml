@@ -6,7 +6,7 @@
     <h:head>
     </h:head>
     <h:body>
-        <div id="modal-cadastrar-album" class="none">
+        <div id="modal-cadastrar-album" >
             <p class="title is-4">Cadastro de Album</p>
             <h:form>
                 <div class="field">
@@ -23,11 +23,11 @@
                 <div class="field">
                     <label class="label has-text-weight-normal">Banda</label>
                     <div class="control">
-                        <h:selectOneMenu id="estado"  value="#{albumControlador.album.banda}" >
+                        <h:selectOneMenu id="estado" converter="converter.Banda" value="#{albumControlador.album.banda}" >
                             <f:selectItem itemLabel="---Selecione---" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{bandaControlador.listar()}" 
                                            var="banda" 
-                                           itemValue="#{banda}" 
+                                           itemValue="#{banda.id}" 
                                            itemLabel="#{banda.nomeFantasia}"/>
                         </h:selectOneMenu>    	
                     </div>

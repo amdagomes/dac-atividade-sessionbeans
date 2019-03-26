@@ -45,7 +45,8 @@ public class BandaPersist implements BandaIF {
 
     @Override
     public Banda find(int id) {
-        return em.find(Banda.class, id);
+        Banda banda = em.find(Banda.class, id);
+        return banda;
     }
 
     @Override

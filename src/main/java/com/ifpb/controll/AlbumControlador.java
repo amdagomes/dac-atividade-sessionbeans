@@ -6,6 +6,7 @@
 package com.ifpb.controll;
 
 import com.ifpb.model.Album;
+import com.ifpb.model.Banda;
 import com.ifpb.model.Estilo;
 
 import com.ifpb.persistenciaIF.AlbumIF;
@@ -30,7 +31,7 @@ public class AlbumControlador implements Serializable {
 
     public String salvar() {
         System.out.println("banda: " + this.album.getBanda().toString());
-//        this.albuns.persist(album);
+        this.albuns.persist(album);
         return null;
     }
 
