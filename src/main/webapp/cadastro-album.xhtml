@@ -23,13 +23,11 @@
                 <div class="field">
                     <label class="label has-text-weight-normal">Banda</label>
                     <div class="control">
-                        <h:selectOneMenu id="estado" converter="converter.Banda" value="#{albumControlador.album.banda}" >
-                            <f:selectItem itemLabel="---Selecione---" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{bandaControlador.listar()}" 
-                                           var="banda" 
-                                           itemValue="#{banda.id}" 
-                                           itemLabel="#{banda.nomeFantasia}"/>
-                        </h:selectOneMenu>    	
+                        <h:selectOneMenu class="select" value="#{albumControlador.album.banda}" converter="converter.Banda">
+                            <f:selectItem itemLabel="--Selecione--" noSelectionOption="true"/>  
+                            <f:selectItems value="#{bandaControlador.listar()}" var="banda" 
+                                           itemLabel="#{banda.nomeFantasia}" itemValue="#{banda}"/>
+                        </h:selectOneMenu>   	
                     </div>
                 </div>
 

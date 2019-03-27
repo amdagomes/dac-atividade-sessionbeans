@@ -26,6 +26,9 @@ section.full{
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px 0px;
 }
 
+.hero.is-info div.destaque p.title{
+    color: #363636 !important;
+}
 .column.has-vertically-aligned-content {
     display: flex;
     flex-direction: column;

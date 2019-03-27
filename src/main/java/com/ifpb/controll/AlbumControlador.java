@@ -16,16 +16,18 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Cliente
  */
-@ManagedBean(name = "albumControlador")
+@Named
 @RequestScoped
 public class AlbumControlador implements Serializable {
 
-    @EJB
+    @Inject
     private AlbumIF albuns;
     private Album album = new Album();
 

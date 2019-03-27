@@ -30,12 +30,9 @@ public class BandaControlador implements Serializable {
     private Integrante integrante = new Integrante();
 
     public String addBanda() {
-
         this.banda.persist(this.b);
         this.b = new Banda();
-        bandaAleatoria();
         return "index.xhtml";
-
     }
 
     public String removeBanda(Banda b) {
@@ -68,11 +65,6 @@ public class BandaControlador implements Serializable {
         return null;
     }
     
-    public List<Banda> bandaAleatoria() {
-
-        return this.banda.listBandaAleatoria();
-    }
-
     public Banda bandaPorIntegrante(String integrante) {
 
         return this.banda.BandaIntegrante(integrante);

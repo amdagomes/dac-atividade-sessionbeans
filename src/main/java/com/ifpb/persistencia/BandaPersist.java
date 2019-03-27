@@ -28,7 +28,7 @@ public class BandaPersist implements BandaIF {
 //    EntityManager em = Persistence
 //            .createEntityManagerFactory("DAC")
 //            .createEntityManager();
-    
+//    
     @PersistenceContext
     EntityManager em;
 
@@ -84,14 +84,6 @@ public class BandaPersist implements BandaIF {
         banda = b;
         banda.setId(id);
         em.merge(banda);
-    }
-
-    @Override
-    public List<Banda> listBandaAleatoria() {
-        String sql = "SELECT * FROM Banda  ORDER BY RANDOM() LIMIT 3";
-        Query query = em.createNativeQuery(sql, Banda.class);
-        List<Banda> resultList = query.getResultList();
-        return resultList;
     }
 
 }

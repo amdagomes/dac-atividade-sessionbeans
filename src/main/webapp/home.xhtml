@@ -22,6 +22,34 @@
                 </div>
             </div>
         </section>
+        <section class="hero is-info">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Destaques
+                    </h1>
+                    <div class="tile destaque">
+                        <ui:repeat var="banda" value="#{bandaRecomendadaController.recomendarBanda()}">
+                            <div class="tile is-parent is-3 is-vertical">
+                                <article class="tile is-child box">
+                                    <p class="title is-4">#{banda.nomeFantasia}</p>
+                                    <p>Local de origem: #{banda.localDeOrigem}</p>
+                                    <p>Integrantes: </p>
+                                    <div class="field is-grouped is-grouped-multiline">
+                                        <div class="tags">
+                                            <ui:repeat var="integrante" value="#{banda.integrantes}">
+                                                <a class="tag is-link">#{integrante.nome}</a>
+                                            </ui:repeat>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </article>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="container">
             <div class="section">
                 <div class="tile">
@@ -32,8 +60,8 @@
                                 <p class="title is-4">#{banda.nomeFantasia}</p>
                                 <p>Local de origem: #{banda.localDeOrigem}</p>
                                 <p>Integrantes: </p>
-                                <ui:repeat var="integrante" value="#">
-                                    <p>#</p>
+                                <ui:repeat var="integrante" value="#{banda.integrantes}">
+                                    <p>#{integrante.nome}</p>
                                 </ui:repeat>
                                 <br/>
 
