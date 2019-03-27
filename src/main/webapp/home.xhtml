@@ -29,7 +29,7 @@
                         Destaques
                     </h1>
                     <div class="tile destaque">
-                        <ui:repeat var="banda" value="#{bandaRecomendadaController.recomendarBanda()}">
+                        <ui:repeat var="banda" value="#{bandaControlador.bandaAleatoria()}">
                             <div class="tile is-parent is-3 is-vertical">
                                 <article class="tile is-child box">
                                     <p class="title is-4">#{banda.nomeFantasia}</p>
