@@ -31,19 +31,12 @@
         <div class="container">
             <div class="r-integrante">
                 <div class="tile is-ancestor">
-                    <ui:repeat var="banda" value="#{bandaControlador.bandaAleatoria()}">
-                        <div class="tile is-parent is-3 is-vertical">
+                    <ui:repeat var="integrante" value="#{integranteControlador.listar()}">
+                        <div class="tile is-parent is-3">
                             <article class="tile is-child box">
-                                <p class="title is-4">#{banda.nomeFantasia}</p>
-                                <p>Local de origem: #{banda.localDeOrigem}</p>
-                                <p>Integrantes: </p>
-                                <div class="field is-grouped is-grouped-multiline">
-                                    <div class="tags">
-                                        <ui:repeat var="integrante" value="#{banda.integrantes}">
-                                            <a class="tag is-link">#{integrante.nome}</a>
-                                        </ui:repeat>
-                                    </div>
-                                </div>
+                                <p class="title is-4">#{integrante.nome}</p>
+                                <p>Data de Nascimento: #{integrante.dataDeNascimento}</p>
+                                <p>CPF: #{integrante.cpf.formatado()}</p>
                                 <br/>
                             </article>
                         </div>

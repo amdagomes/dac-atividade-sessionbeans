@@ -72,9 +72,6 @@
                                 <br/>
 
                                 <div class="columns">
-                                    <div class="column has-text-centered">
-                                        <a href="#modal-banda-#{banda.id}" class="button is-success" rel="modal:open">Atualizar</a>
-                                    </div>
                                     <div class="column has-text-centered">     
                                         <h:form>
                                             <h:commandLink class="button is-danger" action="#{bandaControlador.removeBanda(banda)}" value="Remover"/>
@@ -82,27 +79,7 @@
                                     </div>
                                 </div>
                             </article>
-                        </div>
-
-                        <div id="modal-banda-#{banda.id}" class="modal">
-                            <p class="title is-4">Atualizar </p>
-                            <h:form>
-                                <h:inputHidden value="#"/>
-                                <div class="field">
-                                    <label class="label has-text-weight-normal">Nome</label>
-                                    <div class="control">
-                                        <h:inputText class="input" value="#{banda.nomeFantasia}"/>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label has-text-weight-normal">Local de origem</label>
-                                    <div class="control">
-                                        <h:inputText class="input" value="#{banda.localDeOrigem}"/>
-                                    </div>
-                                </div>
-                                <h:commandButton class="button is-success is-fullwidth" value="Atualizar" action="#"/>
-                            </h:form>
-                        </div>
+                        </div>     
                     </ui:repeat>
                 </div>
             </div>
