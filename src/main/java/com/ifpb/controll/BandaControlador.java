@@ -32,6 +32,9 @@ public class BandaControlador implements Serializable {
     private Banda b = new Banda();
     private Integrante integrante = new Integrante();
     
+    private String nomeBusca = null;
+    private List<Banda> resultadoBusca;
+    
     public String addBanda() {
         this.banda.persist(this.b);
         this.b = new Banda();
@@ -51,9 +54,9 @@ public class BandaControlador implements Serializable {
         return this.banda.list();
     }
 
-    public List<Banda> bandaIntegrante(String integrante) {
-
-        return this.banda.listBandaPorIntegrante(integrante);
+    public String buscaBanda() {
+        this.resultadoBusca = this.banda.listBandaPorIntegrante(this.nomeBusca);
+        return "resultado-busca.xthml";
     }
     
     public String addIntegrante(){
@@ -91,6 +94,22 @@ public class BandaControlador implements Serializable {
 
     public void setIntegrante(Integrante integrante) {
         this.integrante = integrante;
+    }
+
+    public String getNomeBusca() {
+        return nomeBusca;
+    }
+
+    public void setNomeBusca(String nomeBusca) {
+        this.nomeBusca = nomeBusca;
+    }
+
+    public List<Banda> getResultadoBusca() {
+        return resultadoBusca;
+    }
+
+    public void setResultadoBusca(List<Banda> resultadoBusca) {
+        this.resultadoBusca = resultadoBusca;
     }
 
 }

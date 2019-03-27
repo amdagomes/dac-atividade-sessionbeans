@@ -18,6 +18,12 @@
                         <li id="banda" class="is-active"><a>Bandas</a></li>
                         <li id="integrante" class=""><a href="home-integrantes.xhtml">Integrantes</a></li>
                         <li><a href="index.xhtml">Cadastrar</a></li>
+                        <li>
+                            <h:form>
+                                <h:inputText class="input is-small" value="#{bandaControlador.nomeBusca}"/>
+                                <h:commandButton class="button is-small" value="Buscar" action="#{bandaControlador.buscaBanda()}"/>
+                            </h:form>
+                        </li>
                     </ul>
                 </div>
             </div>
