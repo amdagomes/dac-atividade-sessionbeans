@@ -32,7 +32,7 @@ public class Integrante implements Serializable {
     @AttributeOverride(name = "numero", column = @Column(name = "cpf"))
     private Cpf cpf = new Cpf("");
 
-//    @Convert(converter = ConversorLocalDate.class)
+    @Convert(converter = ConversorLocalDate.class)
     private LocalDate dataDeNascimento;
 
     public Integrante() {

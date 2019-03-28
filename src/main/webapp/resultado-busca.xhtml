@@ -16,7 +16,7 @@
                 <div class="tabs is-centered">
                     <ul>
                         <li id="banda"><a href="home.xhtml">Bandas</a></li>
-                        <li id="integrante" class="is-active"><a>Integrantes</a></li>
+                        <li id="integrante" class=""><a href="home-integrantes.xhtml">Integrantes</a></li>
                         <li><a href="index.xhtml">Cadastrar</a></li>
                         <li>
                             <h:form>
@@ -29,19 +29,21 @@
             </div>
         </section>
         <div class="container">
-            <div class="r-integrante">
-                <div class="tile is-ancestor">
-                    <ui:repeat var="integrante" value="#{integranteControlador.listar()}">
-                        <div class="tile is-parent is-3">
-                            <article class="tile is-child box">
-                                <p class="title is-4">#{integrante.nome}</p>
-                                <p>Data de Nascimento: #{integrante.dataDeNascimento}</p>
-                                <p>CPF: #{integrante.cpf.formatado()}</p>
-                                <br/>
-                            </article>
-                        </div>
-                    </ui:repeat>
-                </div>
+            <h4 class="is-4">Resultado da busca...</h4>
+            <div class="tile">
+                <ui:repeat var="banda" value="#{bandaControlador.resultadoBusca}">
+                    <div class="tile is-parent is-3 is-vertical">
+                        <article class="tile is-child box">
+                            <p class="title is-4">#{banda.nomeFantasia}</p>
+                            <p>Local de origem: #{banda.localDeOrigem}</p>
+                            <p>Integrantes: </p>
+                            <ui:repeat var="integrante" value="#{banda.integrantes}">
+                                <p>#{integrante.nome}</p>
+                            </ui:repeat>
+                            <br/>
+                        </article>
+                    </div>
+                </ui:repeat>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>

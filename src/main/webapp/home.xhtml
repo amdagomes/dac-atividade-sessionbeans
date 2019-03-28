@@ -18,7 +18,41 @@
                         <li id="banda" class="is-active"><a>Bandas</a></li>
                         <li id="integrante" class=""><a href="home-integrantes.xhtml">Integrantes</a></li>
                         <li><a href="index.xhtml">Cadastrar</a></li>
+                        <li>
+                            <h:form>
+                                <h:inputText class="input is-small" value="#{bandaControlador.nomeBusca}"/>
+                                <h:commandButton class="button is-small" value="Buscar" action="#{bandaControlador.buscaBanda()}"/>
+                            </h:form>
+                        </li>
                     </ul>
+                </div>
+            </div>
+        </section>
+        <section class="hero is-info">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Destaques
+                    </h1>
+                    <div class="tile destaque">
+                        <ui:repeat var="banda" value="#{bandaControlador.bandaAleatoria()}">
+                            <div class="tile is-parent is-3 is-vertical">
+                                <article class="tile is-child box">
+                                    <p class="title is-4">#{banda.nomeFantasia}</p>
+                                    <p>Local de origem: #{banda.localDeOrigem}</p>
+                                    <p>Integrantes: </p>
+                                    <div class="field is-grouped is-grouped-multiline">
+                                        <div class="tags">
+                                            <ui:repeat var="integrante" value="#{banda.integrantes}">
+                                                <a class="tag is-link">#{integrante.nome}</a>
+                                            </ui:repeat>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </article>
+                            </div>
+                        </ui:repeat>
+                    </div>
                 </div>
             </div>
         </section>
@@ -32,15 +66,12 @@
                                 <p class="title is-4">#{banda.nomeFantasia}</p>
                                 <p>Local de origem: #{banda.localDeOrigem}</p>
                                 <p>Integrantes: </p>
-                                <ui:repeat var="integrante" value="#">
-                                    <p>#</p>
+                                <ui:repeat var="integrante" value="#{banda.integrantes}">
+                                    <p>#{integrante.nome}</p>
                                 </ui:repeat>
                                 <br/>
 
                                 <div class="columns">
-                                    <div class="column has-text-centered">
-                                        <a href="#modal-banda-#{banda.id}" class="button is-success" rel="modal:open">Atualizar</a>
-                                    </div>
                                     <div class="column has-text-centered">     
                                         <h:form>
                                             <h:commandLink class="button is-danger" action="#{bandaControlador.removeBanda(banda)}" value="Remover"/>
@@ -48,27 +79,7 @@
                                     </div>
                                 </div>
                             </article>
-                        </div>
-
-                        <div id="modal-banda-#{banda.id}" class="modal">
-                            <p class="title is-4">Atualizar </p>
-                            <h:form>
-                                <h:inputHidden value="#"/>
-                                <div class="field">
-                                    <label class="label has-text-weight-normal">Nome</label>
-                                    <div class="control">
-                                        <h:inputText class="input" value="#{banda.nomeFantasia}"/>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label has-text-weight-normal">Local de origem</label>
-                                    <div class="control">
-                                        <h:inputText class="input" value="#{banda.localDeOrigem}"/>
-                                    </div>
-                                </div>
-                                <h:commandButton class="button is-success is-fullwidth" value="Atualizar" action="#"/>
-                            </h:form>
-                        </div>
+                        </div>     
                     </ui:repeat>
                 </div>
             </div>

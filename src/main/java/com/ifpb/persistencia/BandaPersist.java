@@ -28,7 +28,7 @@ public class BandaPersist implements BandaIF {
 //    EntityManager em = Persistence
 //            .createEntityManagerFactory("DAC")
 //            .createEntityManager();
-    
+//    
     @PersistenceContext
     EntityManager em;
 
@@ -86,6 +86,4 @@ public class BandaPersist implements BandaIF {
         em.merge(banda);
     }
 
-    
-    
 }

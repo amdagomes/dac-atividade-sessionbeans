@@ -22,7 +22,7 @@ import javax.persistence.PersistenceContext;
  * @author Cliente
  */
 @Stateless
-@Remote(AlbumIF.class)
+//@Remote(AlbumIF.class)
 public class AlbumPersist implements AlbumIF {
 
 //    EntityManager em = Persistence
@@ -44,7 +44,8 @@ public class AlbumPersist implements AlbumIF {
 
     @Override
     public Album find(int id) {
-        return em.find(Album.class, id);
+        Album album = em.find(Album.class, id);
+        return album;
     }
 
     @Override

@@ -7,16 +7,14 @@ package com.ifpb.controll;
 
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-
 import com.ifpb.model.Banda;
 import com.ifpb.model.Integrante;
-import com.ifpb.persistencia.BandaDestaque;
 import com.ifpb.persistenciaIF.BandaDestaqueIF;
 import com.ifpb.persistenciaIF.BandaIF;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -28,20 +26,19 @@ public class BandaControlador implements Serializable {
 
     @EJB
     private BandaIF banda;
-    @EJB
+    @Inject
     private BandaDestaqueIF bd;
     
     private Banda b = new Banda();
     private Integrante integrante = new Integrante();
     
-
+    private String nomeBusca = null;
+    private List<Banda> resultadoBusca;
+    
     public String addBanda() {
-
         this.banda.persist(this.b);
         this.b = new Banda();
-        bandaAleatoria();
         return "index.xhtml";
-
     }
 
     public String removeBanda(Banda b) {
@@ -57,9 +54,9 @@ public class BandaControlador implements Serializable {
         return this.banda.list();
     }
 
-    public List<Banda> bandaIntegrante(String integrante) {
-
-        return this.banda.listBandaPorIntegrante(integrante);
+    public String buscaBanda() {
+        this.resultadoBusca = this.banda.listBandaPorIntegrante(this.nomeBusca);
+        return "resultado-busca.xthml";
     }
     
     public String addIntegrante(){
@@ -75,7 +72,6 @@ public class BandaControlador implements Serializable {
     }
     
     public List<Banda> bandaAleatoria() {
-
         return this.bd.listBandaAleatoria();
     }
 
@@ -98,6 +94,22 @@ public class BandaControlador implements Serializable {
 
     public void setIntegrante(Integrante integrante) {
         this.integrante = integrante;
+    }
+
+    public String getNomeBusca() {
+        return nomeBusca;
+    }
+
+    public void setNomeBusca(String nomeBusca) {
+        this.nomeBusca = nomeBusca;
+    }
+
+    public List<Banda> getResultadoBusca() {
+        return resultadoBusca;
+    }
+
+    public void setResultadoBusca(List<Banda> resultadoBusca) {
+        this.resultadoBusca = resultadoBusca;
     }
 
 }

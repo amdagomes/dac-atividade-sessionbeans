@@ -17,6 +17,7 @@ import javax.ejb.Remote;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -30,10 +31,8 @@ import javax.persistence.Query;
 
 public class BandaDestaque implements BandaDestaqueIF {
     
-    
-    EntityManager em = Persistence
-          .createEntityManagerFactory("DAC")
-          .createEntityManager();
+    @PersistenceContext
+    EntityManager em; 
     
     @Lock(LockType.READ)
     @Override
