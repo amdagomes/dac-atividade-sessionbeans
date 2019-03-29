@@ -6,11 +6,11 @@
 package com.ifpb.controll;
 
 import com.ifpb.model.Banda;
-import com.ifpb.persistenciaIF.BandaIF;
 import com.ifpb.persistenciaIF.PlaylistIF;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -22,23 +22,27 @@ import javax.servlet.http.HttpSession;
  */
 @Named
 @SessionScoped
-public class ControladorPlaylist {
+public class ControladorPlaylist implements Serializable{
 
     @EJB
     private PlaylistIF playlist;
-    private BandaIF bandaif;
-    private Banda banda;
-
-    public List<Banda> listarCarrinho() {
-        return playlist.lista();
+//    private List<Banda> bandas = new ArrayList<>();
+    
+    public List<Banda> listarPlaylist() {
+//        this.bandas = playlist.lista();
+        return this.playlist.lista();
+    }
+    
+    public String remover(Banda banda){
+        this.playlist.removerBanda(banda);
+        listarPlaylist();
+        return null;
     }
 
-    public List<Banda> todasAsBandas() {
-        return bandaif.list();
-    }
-
-    public void addBanda() {
-        playlist.addBanda(this.banda);
+    public String addBanda(Banda banda) {
+        playlist.addBanda(banda);
+        listarPlaylist();
+        return null;
     }
 
     private void finalizarSessao() {
@@ -46,4 +50,13 @@ public class ControladorPlaylist {
         HttpSession session = (HttpSession) externalContext.getSession(true);
         session.invalidate();
     }
+
+//    public List<Banda> getBandas() {
+//        return bandas;
+//    }
+//
+//    public void setBandas(List<Banda> bandas) {
+//        this.bandas = bandas;
+//    }
+    
 }

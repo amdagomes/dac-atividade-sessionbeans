@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import javax.ejb.Remote;
+import javax.ejb.Local;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.ejb.StatefulTimeout;
@@ -21,12 +21,13 @@ import javax.ejb.StatefulTimeout;
  * @author Cliente
  */
 @Stateful
-@Remote(PlaylistIF.class)
+//@Remote(PlaylistIF.class)
 @StatefulTimeout(unit = TimeUnit.MINUTES, value = 5)
+@Local(PlaylistIF.class)
 public class Playlist implements PlaylistIF {
 
-    List<Banda> bandaList = new ArrayList<>();
-
+    private final List<Banda> bandaList = new ArrayList<>();
+    
     @Override
     public void addBanda(Banda banda) {
         this.bandaList.add(banda);

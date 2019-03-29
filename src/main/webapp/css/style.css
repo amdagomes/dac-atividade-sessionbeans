@@ -59,3 +59,11 @@ div.tabs li.is-active {
 .tile{
     flex-flow: wrap !important;
 }
+
+footer.footer{
+    width: 100%;
+    max-height: 150px;
+    overflow-y: scroll;
+    position: fixed;
+    bottom: 0;
+}
